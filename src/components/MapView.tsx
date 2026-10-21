@@ -1,6 +1,24 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import type { Facility, Floor, NavigationEdge, NavigationNode, Section, Store } from '../models/types';
+import { formatDistance } from '../algorithms/directions';
+import { Legend } from './Legend';
+
+export interface MapStopMarker {
+  nodeId: string;
+  /** Text inside the marker, e.g. "1" or "S". */
+  badge: string;
+  title: string;
+  isStart?: boolean;
+}
+
+export interface MapTripLink {
+  id: string;
+  fromNodeId: string;
+  toNodeId: string;
+  distance: number;
+  state: 'tree' | 'accepted' | 'rejected';
+}
 
 interface MapViewProps {
   floorId: string;
@@ -20,6 +38,12 @@ interface MapViewProps {
   /** Live "you are here" position during guidance. */
   walker?: { floorId: string; x: number; y: number } | null;
   showWalkways?: boolean;
+  /** Numbered trip stops (and the start) shown as badges. */
+  stopMarkers?: MapStopMarker[];
+  /** Links of the trip MST between stops (straight lines labelled with walking distance). */
+  tripLinks?: MapTripLink[];
+  /** Tailwind height class for the map canvas. */
+  heightClass?: string;
   onSelectNode: (nodeId: string) => void;
   onSelectSection: (sectionId: string) => void;
   onSelectStore: (storeId: string) => void;
@@ -72,12 +96,16 @@ export function MapView({
   activeStepNodeId,
   walker,
   showWalkways = true,
+  stopMarkers = [],
+  tripLinks = [],
+  heightClass = 'h-[420px]',
   onSelectNode,
   onSelectSection,
   onSelectStore,
   onChangeFloor,
 }: MapViewProps) {
   const [view, setView] = useState<ViewState>(DEFAULT_VIEW);
+  const [legendOpen, setLegendOpen] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
   const dragRef = useRef<{ startX: number; startY: number; view: ViewState; moved: boolean } | null>(null);
   const suppressClickRef = useRef(false);
@@ -171,18 +199,36 @@ export function MapView({
   const walkerVisible = walker && walker.floorId === floorId;
 
   return (
-    <div className="rounded-xl border border-slate-300 bg-white/70 p-2 shadow-sm dark:border-slate-700 dark:bg-slate-900/70">
-      <div className="mb-2 flex flex-wrap items-center gap-2 text-sm">
+    <div className="flex h-full flex-col rounded-xl border border-slate-300 bg-white/70 p-2 shadow-sm dark:border-slate-700 dark:bg-slate-900/70">
+      <div className="relative mb-2 flex flex-wrap items-center gap-2 text-sm">
+        <label className="sr-only" htmlFor="floor-select">
+          Floor
+        </label>
+        <select id="floor-select" className="rounded border px-2 py-1 font-medium" value={floorId} onChange={(event) => onChangeFloor(event.target.value)}>
+          {floors.map((floor) => (
+            <option key={floor.id} value={floor.id}>
+              {floor.label}
+            </option>
+          ))}
+        </select>
         <button className="rounded border px-2 py-1" onClick={() => setView((current) => zoomAround(current, current.zoom + 0.25))} aria-label="Zoom in">
-          Zoom +
+          +
         </button>
         <button className="rounded border px-2 py-1" onClick={() => setView((current) => zoomAround(current, current.zoom - 0.25))} aria-label="Zoom out">
-          Zoom -
+          −
         </button>
         <button className="rounded border px-2 py-1" onClick={() => setView(DEFAULT_VIEW)}>
-          Reset View
+          Reset
         </button>
-        <span className="text-xs text-slate-500 dark:text-slate-400">Drag to pan · scroll to zoom</span>
+        <button className="rounded border px-2 py-1" onClick={() => setLegendOpen((value) => !value)} aria-expanded={legendOpen}>
+          Legend
+        </button>
+        <span className="hidden text-xs text-slate-500 xl:inline dark:text-slate-400">Drag to pan · scroll to zoom</span>
+        {legendOpen && (
+          <div className="absolute left-0 top-full z-20 mt-1 w-72 bg-white shadow-lg dark:bg-slate-900">
+            <Legend />
+          </div>
+        )}
         {otherRouteFloors.length > 0 && (
           <span className="ml-auto flex flex-wrap items-center gap-1 text-xs">
             <span className="text-sky-700 dark:text-sky-300">Route continues on</span>
@@ -194,11 +240,11 @@ export function MapView({
           </span>
         )}
       </div>
-      <div className="overflow-hidden rounded-lg">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-lg">
         <svg
           ref={svgRef}
           viewBox={`${view.x} ${view.y} ${WIDTH / view.zoom} ${HEIGHT / view.zoom}`}
-          className="h-[420px] w-full cursor-grab touch-none select-none active:cursor-grabbing rounded-lg bg-slate-100 dark:bg-slate-950"
+          className={`${heightClass} w-full cursor-grab touch-none select-none active:cursor-grabbing rounded-lg bg-slate-100 dark:bg-slate-950`}
           role="img"
           aria-label={`Mall map, ${floorLabel(floorId)}`}
           onPointerDown={onPointerDown}
@@ -213,7 +259,7 @@ export function MapView({
           }}
         >
           <defs>
-            <marker id="route-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+            <marker id="route-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="2.6" markerHeight="2.6" orient="auto-start-reverse">
               <path d="M0 0 10 5 0 10z" fill="#0284c7" />
             </marker>
           </defs>
@@ -302,7 +348,7 @@ export function MapView({
               points={run.map((node) => `${node.x},${node.y}`).join(' ')}
               fill="none"
               stroke="#0ea5e9"
-              strokeWidth={5}
+              strokeWidth={4.5}
               strokeLinejoin="round"
               strokeLinecap="round"
               markerMid="url(#route-arrow)"
@@ -351,6 +397,55 @@ export function MapView({
               <circle cx={0} cy={-15} r={3} fill="white" />
             </g>
           )}
+
+          {tripLinks.map((link) => {
+            const from = nodeMap.get(link.fromNodeId);
+            const to = nodeMap.get(link.toNodeId);
+            if (!from || !to) return null;
+            const color = link.state === 'rejected' ? '#dc2626' : link.state === 'accepted' ? '#16a34a' : '#6366f1';
+            const width = link.state === 'tree' ? 3 : 5;
+            if (from.floorId === floorId && to.floorId === floorId) {
+              const midX = (from.x + to.x) / 2;
+              const midY = (from.y + to.y) / 2;
+              const label = formatDistance(link.distance) || '0 m';
+              return (
+                <g key={`trip-${link.id}`} pointerEvents="none">
+                  <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={color} strokeWidth={width} strokeDasharray={link.state === 'rejected' ? '6 4' : undefined} strokeLinecap="round" opacity={0.85} />
+                  <rect x={midX - 18} y={midY - 8} width={36} height={15} rx={4} fill="white" stroke={color} strokeWidth={1} />
+                  <text x={midX} y={midY + 3} fontSize={9} fontWeight={700} textAnchor="middle" fill={color} className="keep-fill">
+                    {label}
+                  </text>
+                </g>
+              );
+            }
+            // Link to another floor: show a badge next to the stop on this floor.
+            const here = from.floorId === floorId ? from : to.floorId === floorId ? to : null;
+            const other = here === from ? to : from;
+            if (!here) return null;
+            return (
+              <g key={`trip-${link.id}`} pointerEvents="none">
+                <line x1={here.x} y1={here.y} x2={here.x + 26} y2={here.y + 30} stroke={color} strokeWidth={width} strokeDasharray="4 3" />
+                <rect x={here.x + 14} y={here.y + 30} width={78} height={15} rx={4} fill="white" stroke={color} />
+                <text x={here.x + 53} y={here.y + 41} fontSize={9} fontWeight={700} textAnchor="middle" fill={color} className="keep-fill">
+                  ↕ {floorLabel(other.floorId)} · {formatDistance(link.distance)}
+                </text>
+              </g>
+            );
+          })}
+
+          {stopMarkers.map((marker) => {
+            const node = nodeMap.get(marker.nodeId);
+            if (!node || node.floorId !== floorId) return null;
+            return (
+              <g key={`stop-${marker.nodeId}`} className="cursor-pointer" onClick={() => onSelectNode(marker.nodeId)}>
+                <title>{marker.title}</title>
+                <circle cx={node.x} cy={node.y} r={10} fill={marker.isStart ? '#16a34a' : '#4f46e5'} stroke="white" strokeWidth={2} />
+                <text x={node.x} y={node.y + 3.5} fontSize={10} fontWeight={700} textAnchor="middle" fill="white" className="keep-fill">
+                  {marker.badge}
+                </text>
+              </g>
+            );
+          })}
 
           {walkerVisible && walker && (
             <g pointerEvents="none" aria-label="You are here">

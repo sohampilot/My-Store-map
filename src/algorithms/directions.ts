@@ -153,8 +153,9 @@ export const buildDirections = (
 
   const arrivalSentence = (): { instruction: string; spoken: string } => {
     const base = `Arrive at ${destinationLabel}`;
-    const itemPart =
-      destination?.itemName && destination?.aisleLabel
+    const itemPart = destination?.arrivalNote
+      ? ` ${destination.arrivalNote}`
+      : destination?.itemName && destination?.aisleLabel
         ? ` ${destination.itemName} is in ${destination.aisleLabel}.`
         : destination?.itemName
           ? ` Look for ${destination.itemName}.`

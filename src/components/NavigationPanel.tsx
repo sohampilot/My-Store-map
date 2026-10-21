@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { estimateWalkingMinutes, formatDistance } from '../algorithms/directions';
 import type { GuidanceController } from '../hooks/useGuidance';
 import { routeOverview, WALKING_SPEED } from '../hooks/useGuidance';
@@ -11,6 +12,9 @@ interface NavigationPanelProps {
   speech: SpeechController;
   destinationName?: string;
   floorLabel: (floorId: string) => string;
+  onOpenSettings: () => void;
+  /** Short label for the route, e.g. "Laptop Pro 14" or "Trip: 3 stops". */
+  title?: string;
 }
 
 const btn =
@@ -18,11 +22,18 @@ const btn =
 
 const isVerticalManeuver = (maneuver: string) => maneuver.startsWith('elevator') || maneuver.startsWith('stairs');
 
-export function NavigationPanel({ route, guidance, speech, destinationName, floorLabel }: NavigationPanelProps) {
+export function NavigationPanel({ route, guidance, speech, destinationName, floorLabel, onOpenSettings, title }: NavigationPanelProps) {
   const { status, steps, stepIndex, currentStep } = guidance;
   const minutes = estimateWalkingMinutes(route.walkingDistance, WALKING_SPEED);
   const isActive = status === 'guiding';
   const upcoming = steps[stepIndex + 1];
+  const listRef = useRef<HTMLOListElement>(null);
+
+  // Keep the active step visible in the list while guidance advances.
+  useEffect(() => {
+    const active = listRef.current?.querySelector<HTMLElement>('[aria-current="step"]');
+    active?.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
+  }, [stepIndex]);
 
   const readAll = () => {
     speech.speak(routeOverview(route, destinationName));
@@ -30,9 +41,11 @@ export function NavigationPanel({ route, guidance, speech, destinationName, floo
   };
 
   return (
-    <section className="rounded-xl border border-slate-300 bg-white p-3 dark:border-slate-700 dark:bg-slate-900" aria-label="Turn-by-turn directions">
+    <section aria-label="Turn-by-turn directions">
+      {/* Current instruction and controls stay pinned while the step list scrolls. */}
+      <div className="sticky top-0 z-10 -mx-3 -mt-3 mb-2 border-b border-slate-200 bg-white px-3 pb-1 pt-3 dark:border-slate-800 dark:bg-slate-900">
       <div className="mb-2 flex items-baseline justify-between gap-2">
-        <h2 className="font-semibold">Directions</h2>
+        <h2 className="min-w-0 truncate font-semibold">{title ?? 'Directions'}</h2>
         <p className="text-xs text-slate-600 dark:text-slate-300">
           {formatDistance(route.walkingDistance) || '0 m'} · about {minutes} min walk
         </p>
@@ -40,7 +53,7 @@ export function NavigationPanel({ route, guidance, speech, destinationName, floo
 
       {currentStep && (
         <div
-          className={`mb-2 rounded-lg p-3 text-white ${status === 'arrived' ? 'bg-emerald-600' : 'bg-sky-700'}`}
+          className={`mb-2 rounded-lg p-3 text-white ${status === 'arrived' ? 'bg-emerald-600' : currentStep.maneuver === 'waypoint' ? 'bg-indigo-600' : 'bg-sky-700'}`}
           aria-live="polite"
           aria-atomic="true"
         >
@@ -103,27 +116,13 @@ export function NavigationPanel({ route, guidance, speech, destinationName, floo
           />
           Voice on
         </label>
-        <label className="flex items-center gap-1" title="Moves a 'you are here' marker along the route and speaks each turn as you reach it">
-          <input type="checkbox" checked={guidance.simulateWalk} onChange={(event) => guidance.setSimulateWalk(event.target.checked)} />
-          Simulate walk
-        </label>
-        {guidance.simulateWalk && (
-          <label className="flex items-center gap-1">
-            Speed
-            <select
-              className="rounded border px-1 py-0.5"
-              value={guidance.speedMultiplier}
-              onChange={(event) => guidance.setSpeedMultiplier(Number(event.target.value))}
-            >
-              {[1, 2, 3, 5, 8].map((value) => (
-                <option key={value} value={value}>
-                  {value}×
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
+        <span className="text-slate-500">{guidance.simulateWalk ? 'Simulated walk on' : 'Step-by-step mode'}</span>
+        <button className="text-sky-700 underline dark:text-sky-300" onClick={onOpenSettings}>
+          Voice & walk settings
+        </button>
         {speech.speaking && <span className="text-sky-700 dark:text-sky-300">Speaking…</span>}
+      </div>
+
       </div>
 
       {!speech.supported && (
@@ -138,7 +137,7 @@ export function NavigationPanel({ route, guidance, speech, destinationName, floo
         </p>
       )}
 
-      <ol className="max-h-64 space-y-1 overflow-auto text-xs">
+      <ol ref={listRef} className="space-y-1 text-xs">
         {steps.map((step) => {
           const active = step.index === stepIndex;
           const done = step.index < stepIndex && status !== 'idle';
@@ -175,63 +174,6 @@ export function NavigationPanel({ route, guidance, speech, destinationName, floo
         })}
       </ol>
 
-      {speech.supported && (
-        <details className="mt-2 text-xs">
-          <summary className="cursor-pointer font-medium">Voice settings</summary>
-          <div className="mt-2 space-y-2">
-            <label className="block">
-              Voice
-              <select
-                className="mt-1 w-full rounded border px-2 py-1"
-                value={speech.settings.voiceURI ?? ''}
-                onChange={(event) => speech.updateSettings({ voiceURI: event.target.value || null })}
-              >
-                <option value="">Default voice</option>
-                {speech.voices.map((voice) => (
-                  <option key={voice.voiceURI} value={voice.voiceURI}>
-                    {voice.name} ({voice.lang}){voice.localService ? '' : ' · online'}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="block">
-              Speaking rate: {speech.settings.rate.toFixed(1)}×
-              <input
-                type="range"
-                min={0.6}
-                max={1.6}
-                step={0.1}
-                value={speech.settings.rate}
-                onChange={(event) => speech.updateSettings({ rate: Number(event.target.value) })}
-                className="w-full"
-              />
-            </label>
-            <label className="block">
-              Volume: {Math.round(speech.settings.volume * 100)}%
-              <input
-                type="range"
-                min={0.1}
-                max={1}
-                step={0.1}
-                value={speech.settings.volume}
-                onChange={(event) => speech.updateSettings({ volume: Number(event.target.value) })}
-                className="w-full"
-              />
-            </label>
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={speech.settings.autoAnnounce}
-                onChange={(event) => speech.updateSettings({ autoAnnounce: event.target.checked })}
-              />
-              Read the first instruction automatically when a route is created
-            </label>
-            <button className={btn} onClick={() => speech.speak('Voice guidance is ready. In 10 meters, turn left toward Tech Haven.')}>
-              Test voice
-            </button>
-          </div>
-        </details>
-      )}
     </section>
   );
 }

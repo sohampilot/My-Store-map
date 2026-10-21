@@ -22,6 +22,7 @@ const paths: Record<string, string> = {
   'stairs-up': 'M3 20h5v-5h5v-5h5V5h3 M14 4h4v4',
   'stairs-down': 'M3 5h5v5h5v5h5v5h3 M17 20h4v-4',
   'exit-stairs': 'M3 20h5v-5h5v-5h5V5h3',
+  waypoint: 'M6 21V4 M6 4h11l-2 4 2 4H6',
   arrive: 'M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
 };
 

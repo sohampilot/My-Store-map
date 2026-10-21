@@ -60,6 +60,14 @@ then fully restart the browser. Google Chrome also ships its own online voices.
   - "Simulate walk" moves a "you are here" marker along the route, speaks each turn as it is reached
     and gives "In 10 meters, turn left…" warnings; the map follows you between floors
   - Voice, speaking rate and volume settings (saved in the browser), optional auto-announce
+- Multi-stop trips (Trip tab): add up to 12 items, pick a start, and watch a minimum spanning tree being
+  built step by step over the real walking distances between the start and every stop (Kruskal on the
+  all-pairs shortest-path distances). The tree is walked from the start (nearest branch first) to get a
+  visiting order, optionally shortened with 2-opt, then turned into one continuous voice-guided route
+  ("Stop 2 of 4 … Pick up Laptop (Aisle 2) and Mouse (Aisle 3). Next, …"). Items in the same section are
+  grouped into one stop; unreachable stops are reported; optional return to the start.
+- Compact single-screen layout: tabs (Find · Trip · Directions · Explore), full-height map, and a
+  Settings drawer for route options, voice, simulated walk, map, theme and the demo data editor
 - Map: drag to pan, scroll to zoom, walkway graph, start/destination pins, route arrows,
   "route continues on Floor N" shortcut, live MST step playback on the map
 - MST mode with Kruskal + union-find, deterministic tie-breaking, and step playback
@@ -70,7 +78,8 @@ then fully restart the browser. Google Chrome also ships its own online voices.
 
 ## Architecture overview
 
-- `src/algorithms/`: pure graph algorithms (`kruskal`, `dijkstra`, `unionFind`) and `directions` (turn-by-turn text)
+- `src/algorithms/`: pure graph algorithms (`kruskal`, `dijkstra`, `unionFind`), `directions` (turn-by-turn text)
+  and `multiStop` (trip planner: all-pairs distances, stop MST, tree order, 2-opt, stitched route)
 - `src/models/`: typed data model
 - `src/data/`: fictional sample dataset JSON
 - `src/services/`: replaceable `DataService` + `LocalDataService`
@@ -82,6 +91,9 @@ then fully restart the browser. Google Chrome also ships its own online voices.
 ## MST vs shortest-path mode
 
 - **MST mode**: graph-structure visualization connecting all navigation nodes using minimum total edge weight. It does **not** represent user route guidance.
+- **Trip MST** (Trip tab): an MST over the start and your chosen stops, where each link's weight is the
+  shortest walking distance between them. It is used to pick a visiting order; the walking route itself
+  always follows real corridors.
 - **Route mode**: shortest walkable path from a selected start node to an item location using Dijkstra, optionally accessibility-filtered.
 
 ## Demo limitations
