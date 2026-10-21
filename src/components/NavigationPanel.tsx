@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { SpeechHelp } from './SpeechHelp';
 import { estimateWalkingMinutes, formatDistance } from '../algorithms/directions';
 import type { GuidanceController } from '../hooks/useGuidance';
 import { routeOverview, WALKING_SPEED } from '../hooks/useGuidance';
@@ -130,12 +131,9 @@ export function NavigationPanel({ route, guidance, speech, destinationName, floo
           This browser does not support text-to-speech. Directions are still shown on screen.
         </p>
       )}
-      {speech.supported && speech.voicesLoaded && speech.voices.length === 0 && (
-        <p className="mb-2 rounded bg-amber-50 p-2 text-xs text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
-          No speech voices were found. On Linux, install a speech engine (for example on Arch:{' '}
-          <code>sudo pacman -S speech-dispatcher espeak-ng</code>) and restart the browser.
-        </p>
-      )}
+      <div className="mb-2">
+        <SpeechHelp speech={speech} />
+      </div>
 
       <ol ref={listRef} className="space-y-1 text-xs">
         {steps.map((step) => {

@@ -1,6 +1,7 @@
 import type { AppSettings } from '../hooks/useAppSettings';
 import type { SpeechController } from '../hooks/useSpeech';
 import { Section, buttonClass } from './ui';
+import { SpeechHelp } from './SpeechHelp';
 
 interface SettingsPanelProps {
   settings: AppSettings;
@@ -59,11 +60,6 @@ export function SettingsPanel({ settings, onChange, speech, onOpenEditor }: Sett
                 ))}
               </select>
             </label>
-            {speech.voicesLoaded && speech.voices.length === 0 && (
-              <p className="rounded bg-amber-50 p-2 text-xs text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
-                No voices found. On Arch Linux run <code>sudo pacman -S speech-dispatcher espeak-ng</code> and restart the browser.
-              </p>
-            )}
             <label className="block text-sm">
               Speaking rate: {speech.settings.rate.toFixed(1)}×
               <input
@@ -96,9 +92,13 @@ export function SettingsPanel({ settings, onChange, speech, onOpenEditor }: Sett
                 onChange={(event) => speech.updateSettings({ autoAnnounce: event.target.checked })}
               />
             </label>
-            <button className={buttonClass} onClick={() => speech.speak('Voice guidance is ready. In 10 meters, turn left toward Tech Haven.')}>
+            <button className={buttonClass} onClick={() => speech.speak('Voice guidance is ready. In 10 meters, turn left toward Tech Haven.', { force: true })}>
               Test voice
             </button>
+            <div>
+              <h4 className="mb-1 text-sm font-medium">Sound check</h4>
+              <SpeechHelp speech={speech} alwaysShowSteps />
+            </div>
           </>
         )}
       </Section>

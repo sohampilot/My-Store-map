@@ -19,7 +19,7 @@ Open the URL printed by Vite (usually http://localhost:5173).
 # 1. Tools: Node.js + npm + git
 sudo pacman -Syu --needed nodejs npm git
 
-# 2. Voices for text-to-speech (Firefox and Chromium on Linux use speech-dispatcher)
+# 2. Voices for text-to-speech (browsers on Linux talk through speech-dispatcher)
 sudo pacman -S --needed speech-dispatcher espeak-ng
 
 # 3. Get the code and run it
@@ -34,8 +34,24 @@ and open the "Network" URL Vite prints (allow port 5173 in your firewall if you 
 
 For a production build: `npm run build && npm run preview` (serves `dist/` on http://localhost:4173).
 
-If the voice guide says "No speech voices were found", check `spd-say "hello"` works in a terminal,
-then fully restart the browser. Google Chrome also ships its own online voices.
+### No sound from the voice guide (Linux)
+
+Browsers on Linux have no built-in voices; they talk through **speech-dispatcher**. The app shows a
+"Sound check" in **Settings → Voice guidance** with the number of voices it found and what went wrong.
+
+1. Check system volume / output device (`pavucontrol`).
+2. Install the engine: `sudo pacman -S --needed speech-dispatcher espeak-ng`
+3. Test outside the browser: `spd-say "hello"`. If silent, run `spd-conf` and pick `espeak-ng` as
+   the default module (or set `DefaultModule espeak-ng` in `~/.config/speech-dispatcher/speechd.conf`).
+4. **Firefox** works out of the box (`media.webspeech.synth.enabled` must be `true` in `about:config`).
+   **Chromium / Chrome / Brave** need a flag on Linux. Fully quit the browser and start it with
+   `--enable-speech-dispatcher`, or make it permanent:
+   ```bash
+   echo "--enable-speech-dispatcher" >> ~/.config/chromium-flags.conf   # Chromium
+   echo "--enable-speech-dispatcher" >> ~/.config/brave-flags.conf      # Brave
+   echo "--enable-speech-dispatcher" >> ~/.config/chrome-flags.conf     # google-chrome (AUR)
+   ```
+5. Fully restart the browser and press **Settings → Test voice**.
 
 ## Scripts
 
