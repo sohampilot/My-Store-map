@@ -1,4 +1,5 @@
 import type { NavigationEdge, NavigationNode, RouteResult } from '../models/types';
+import { buildDirections, buildSegments, type DirectionOptions } from './directions';
 
 interface QueueEntry {
   nodeId: string;
@@ -30,23 +31,28 @@ export const findShortestRoute = (
   startNodeId: string,
   endNodeId: string,
   accessibleOnly = false,
+  options: DirectionOptions = {},
 ): RouteResult | null => {
-  if (startNodeId === endNodeId) {
-    const label = nodes.find((node) => node.id === startNodeId)?.label ?? startNodeId;
-    return {
-      nodeIds: [startNodeId],
-      totalWeight: 0,
-      instructions: [`You are already at ${label}.`],
-    };
-  }
-
   const nodeMap = new Map(nodes.map((node) => [node.id, node]));
   if (!nodeMap.has(startNodeId) || !nodeMap.has(endNodeId)) {
     return null;
   }
 
+  if (startNodeId === endNodeId) {
+    const steps = buildDirections([startNodeId], [], nodeMap, options);
+    return {
+      nodeIds: [startNodeId],
+      totalWeight: 0,
+      walkingDistance: 0,
+      instructions: steps.map((step) => step.instruction),
+      steps,
+      segments: [],
+    };
+  }
+
   const distances = new Map<string, number>();
   const previous = new Map<string, string | null>();
+  const previousEdge = new Map<string, NavigationEdge>();
   const queue: QueueEntry[] = [];
 
   for (const node of nodes) {
@@ -79,6 +85,7 @@ export const findShortestRoute = (
       if (candidateDistance < existing) {
         distances.set(neighbor.nodeId, candidateDistance);
         previous.set(neighbor.nodeId, current.nodeId);
+        previousEdge.set(neighbor.nodeId, neighbor.edge);
         queue.push({ nodeId: neighbor.nodeId, distance: candidateDistance });
       }
     }
@@ -90,24 +97,26 @@ export const findShortestRoute = (
   }
 
   const path: string[] = [];
+  const edgesUsed: NavigationEdge[] = [];
   let cursor: string | null = endNodeId;
   while (cursor) {
     path.unshift(cursor);
+    const edge = previousEdge.get(cursor);
+    if (edge && cursor !== startNodeId) {
+      edgesUsed.unshift(edge);
+    }
     cursor = previous.get(cursor) ?? null;
   }
 
-  const instructions = path.map((nodeId, index) => {
-    const node = nodeMap.get(nodeId);
-    const floorPart = node ? ` (Floor ${node.floorId.replace('f', '')})` : '';
-    if (index === 0) {
-      return `Start at ${node?.label ?? nodeId}${floorPart}.`;
-    }
-    return `Proceed to ${node?.label ?? nodeId}${floorPart}.`;
-  });
+  const segments = buildSegments(path, edgesUsed, nodeMap);
+  const steps = buildDirections(path, segments, nodeMap, options);
 
   return {
     nodeIds: path,
     totalWeight: finalDistance,
-    instructions,
+    walkingDistance: segments.filter((segment) => !segment.vertical).reduce((sum, segment) => sum + segment.weight, 0),
+    instructions: steps.map((step) => step.instruction),
+    steps,
+    segments,
   };
 };
