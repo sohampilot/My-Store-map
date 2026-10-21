@@ -1,0 +1,2000 @@
+{
+  "floors": [
+    {
+      "id": "f1",
+      "label": "Floor 1"
+    },
+    {
+      "id": "f2",
+      "label": "Floor 2"
+    }
+  ],
+  "stores": [
+    {
+      "id": "s-tech",
+      "name": "Tech Haven",
+      "floorId": "f1",
+      "bounds": {
+        "x": 40,
+        "y": 70,
+        "width": 140,
+        "height": 90
+      }
+    },
+    {
+      "id": "s-fashion",
+      "name": "Urban Fashion",
+      "floorId": "f1",
+      "bounds": {
+        "x": 220,
+        "y": 70,
+        "width": 140,
+        "height": 90
+      }
+    },
+    {
+      "id": "s-grocery",
+      "name": "Fresh Basket",
+      "floorId": "f1",
+      "bounds": {
+        "x": 400,
+        "y": 70,
+        "width": 160,
+        "height": 90
+      }
+    },
+    {
+      "id": "s-books",
+      "name": "Page Turners",
+      "floorId": "f1",
+      "bounds": {
+        "x": 600,
+        "y": 70,
+        "width": 140,
+        "height": 90
+      }
+    },
+    {
+      "id": "s-cosmetics",
+      "name": "Glow Studio",
+      "floorId": "f2",
+      "bounds": {
+        "x": 40,
+        "y": 70,
+        "width": 150,
+        "height": 90
+      }
+    },
+    {
+      "id": "s-sports",
+      "name": "Active Arena",
+      "floorId": "f2",
+      "bounds": {
+        "x": 230,
+        "y": 70,
+        "width": 150,
+        "height": 90
+      }
+    },
+    {
+      "id": "s-home",
+      "name": "Home Nook",
+      "floorId": "f2",
+      "bounds": {
+        "x": 420,
+        "y": 70,
+        "width": 150,
+        "height": 90
+      }
+    },
+    {
+      "id": "s-toys",
+      "name": "Play Planet",
+      "floorId": "f2",
+      "bounds": {
+        "x": 610,
+        "y": 70,
+        "width": 150,
+        "height": 90
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-tech-sec-a",
+      "storeId": "s-tech",
+      "floorId": "f1",
+      "name": "Front Section",
+      "marker": {
+        "x": 80,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-tech-sec-b",
+      "storeId": "s-tech",
+      "floorId": "f1",
+      "name": "Back Section",
+      "marker": {
+        "x": 140,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-fashion-sec-a",
+      "storeId": "s-fashion",
+      "floorId": "f1",
+      "name": "Front Section",
+      "marker": {
+        "x": 260,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-fashion-sec-b",
+      "storeId": "s-fashion",
+      "floorId": "f1",
+      "name": "Back Section",
+      "marker": {
+        "x": 320,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-grocery-sec-a",
+      "storeId": "s-grocery",
+      "floorId": "f1",
+      "name": "Front Section",
+      "marker": {
+        "x": 440,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-grocery-sec-b",
+      "storeId": "s-grocery",
+      "floorId": "f1",
+      "name": "Back Section",
+      "marker": {
+        "x": 500,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-books-sec-a",
+      "storeId": "s-books",
+      "floorId": "f1",
+      "name": "Front Section",
+      "marker": {
+        "x": 640,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-books-sec-b",
+      "storeId": "s-books",
+      "floorId": "f1",
+      "name": "Back Section",
+      "marker": {
+        "x": 700,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-cosmetics-sec-a",
+      "storeId": "s-cosmetics",
+      "floorId": "f2",
+      "name": "Front Section",
+      "marker": {
+        "x": 80,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-cosmetics-sec-b",
+      "storeId": "s-cosmetics",
+      "floorId": "f2",
+      "name": "Back Section",
+      "marker": {
+        "x": 140,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-sports-sec-a",
+      "storeId": "s-sports",
+      "floorId": "f2",
+      "name": "Front Section",
+      "marker": {
+        "x": 270,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-sports-sec-b",
+      "storeId": "s-sports",
+      "floorId": "f2",
+      "name": "Back Section",
+      "marker": {
+        "x": 330,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-home-sec-a",
+      "storeId": "s-home",
+      "floorId": "f2",
+      "name": "Front Section",
+      "marker": {
+        "x": 460,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-home-sec-b",
+      "storeId": "s-home",
+      "floorId": "f2",
+      "name": "Back Section",
+      "marker": {
+        "x": 520,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-toys-sec-a",
+      "storeId": "s-toys",
+      "floorId": "f2",
+      "name": "Front Section",
+      "marker": {
+        "x": 650,
+        "y": 115
+      }
+    },
+    {
+      "id": "s-toys-sec-b",
+      "storeId": "s-toys",
+      "floorId": "f2",
+      "name": "Back Section",
+      "marker": {
+        "x": 710,
+        "y": 115
+      }
+    }
+  ],
+  "facilities": [
+    {
+      "id": "fac-east-ent",
+      "label": "East Entrance",
+      "floorId": "f1",
+      "type": "entrance",
+      "x": 20,
+      "y": 250,
+      "navigationNodeId": "n-ent-east"
+    },
+    {
+      "id": "fac-west-ent",
+      "label": "West Entrance",
+      "floorId": "f1",
+      "type": "entrance",
+      "x": 780,
+      "y": 250,
+      "navigationNodeId": "n-ent-west"
+    },
+    {
+      "id": "fac-f1-rest",
+      "label": "Restroom F1",
+      "floorId": "f1",
+      "type": "restroom",
+      "x": 230,
+      "y": 320,
+      "navigationNodeId": "n-f1-restroom"
+    },
+    {
+      "id": "fac-f1-info",
+      "label": "Info Desk F1",
+      "floorId": "f1",
+      "type": "infoDesk",
+      "x": 450,
+      "y": 320,
+      "navigationNodeId": "n-f1-info"
+    },
+    {
+      "id": "fac-f1-elev",
+      "label": "Elevator F1",
+      "floorId": "f1",
+      "type": "elevator",
+      "x": 360,
+      "y": 320,
+      "navigationNodeId": "n-f1-elevator"
+    },
+    {
+      "id": "fac-f1-stairs",
+      "label": "Stairs F1",
+      "floorId": "f1",
+      "type": "stairs",
+      "x": 560,
+      "y": 320,
+      "navigationNodeId": "n-f1-stairs"
+    },
+    {
+      "id": "fac-f2-rest",
+      "label": "Restroom F2",
+      "floorId": "f2",
+      "type": "restroom",
+      "x": 230,
+      "y": 320,
+      "navigationNodeId": "n-f2-restroom"
+    },
+    {
+      "id": "fac-f2-info",
+      "label": "Info Desk F2",
+      "floorId": "f2",
+      "type": "infoDesk",
+      "x": 450,
+      "y": 320,
+      "navigationNodeId": "n-f2-info"
+    },
+    {
+      "id": "fac-f2-elev",
+      "label": "Elevator F2",
+      "floorId": "f2",
+      "type": "elevator",
+      "x": 360,
+      "y": 320,
+      "navigationNodeId": "n-f2-elevator"
+    },
+    {
+      "id": "fac-f2-stairs",
+      "label": "Stairs F2",
+      "floorId": "f2",
+      "type": "stairs",
+      "x": 560,
+      "y": 320,
+      "navigationNodeId": "n-f2-stairs"
+    }
+  ],
+  "items": [
+    {
+      "id": "item-1",
+      "name": "Laptop Pro 14",
+      "category": "electronics",
+      "keywords": [
+        "laptop",
+        "pro",
+        "14",
+        "electronics",
+        "tech"
+      ],
+      "locations": [
+        {
+          "id": "loc-1-1",
+          "floorId": "f1",
+          "storeId": "s-tech",
+          "sectionId": "s-tech-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-tech-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-2",
+      "name": "Wireless Mouse",
+      "category": "electronics",
+      "keywords": [
+        "wireless",
+        "mouse",
+        "electronics",
+        "tech"
+      ],
+      "locations": [
+        {
+          "id": "loc-2-1",
+          "floorId": "f1",
+          "storeId": "s-tech",
+          "sectionId": "s-tech-sec-a",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-tech-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-3",
+      "name": "Mechanical Keyboard",
+      "category": "electronics",
+      "keywords": [
+        "mechanical",
+        "keyboard",
+        "electronics",
+        "tech"
+      ],
+      "locations": [
+        {
+          "id": "loc-3-1",
+          "floorId": "f1",
+          "storeId": "s-tech",
+          "sectionId": "s-tech-sec-b",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-tech-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-4",
+      "name": "Noise Cancelling Headphones",
+      "category": "electronics",
+      "keywords": [
+        "noise",
+        "cancelling",
+        "headphones",
+        "electronics",
+        "tech"
+      ],
+      "locations": [
+        {
+          "id": "loc-4-1",
+          "floorId": "f1",
+          "storeId": "s-tech",
+          "sectionId": "s-tech-sec-b",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-tech-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-5",
+      "name": "USB-C Charger",
+      "category": "electronics",
+      "keywords": [
+        "usb",
+        "c",
+        "charger",
+        "electronics",
+        "tech"
+      ],
+      "locations": [
+        {
+          "id": "loc-5-1",
+          "floorId": "f1",
+          "storeId": "s-tech",
+          "sectionId": "s-tech-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-tech-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-6",
+      "name": "Smart Watch",
+      "category": "electronics",
+      "keywords": [
+        "smart",
+        "watch",
+        "electronics",
+        "tech"
+      ],
+      "locations": [
+        {
+          "id": "loc-6-1",
+          "floorId": "f1",
+          "storeId": "s-tech",
+          "sectionId": "s-tech-sec-b",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-tech-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-7",
+      "name": "Bluetooth Speaker",
+      "category": "electronics",
+      "keywords": [
+        "bluetooth",
+        "speaker",
+        "electronics",
+        "tech"
+      ],
+      "locations": [
+        {
+          "id": "loc-7-1",
+          "floorId": "f1",
+          "storeId": "s-tech",
+          "sectionId": "s-tech-sec-a",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-tech-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-8",
+      "name": "Graphic T-Shirt",
+      "category": "clothing",
+      "keywords": [
+        "graphic",
+        "t",
+        "shirt",
+        "clothing",
+        "fashion"
+      ],
+      "locations": [
+        {
+          "id": "loc-8-1",
+          "floorId": "f1",
+          "storeId": "s-fashion",
+          "sectionId": "s-fashion-sec-a",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-fashion-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-9",
+      "name": "Denim Jacket",
+      "category": "clothing",
+      "keywords": [
+        "denim",
+        "jacket",
+        "clothing",
+        "fashion"
+      ],
+      "locations": [
+        {
+          "id": "loc-9-1",
+          "floorId": "f1",
+          "storeId": "s-fashion",
+          "sectionId": "s-fashion-sec-b",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-fashion-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-10",
+      "name": "Running Shoes",
+      "category": "clothing",
+      "keywords": [
+        "running",
+        "shoes",
+        "clothing",
+        "fashion"
+      ],
+      "locations": [
+        {
+          "id": "loc-10-1",
+          "floorId": "f1",
+          "storeId": "s-fashion",
+          "sectionId": "s-fashion-sec-b",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-fashion-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-11",
+      "name": "Formal Shirt",
+      "category": "clothing",
+      "keywords": [
+        "formal",
+        "shirt",
+        "clothing",
+        "fashion"
+      ],
+      "locations": [
+        {
+          "id": "loc-11-1",
+          "floorId": "f1",
+          "storeId": "s-fashion",
+          "sectionId": "s-fashion-sec-a",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-fashion-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-12",
+      "name": "Summer Dress",
+      "category": "clothing",
+      "keywords": [
+        "summer",
+        "dress",
+        "clothing",
+        "fashion"
+      ],
+      "locations": [
+        {
+          "id": "loc-12-1",
+          "floorId": "f1",
+          "storeId": "s-fashion",
+          "sectionId": "s-fashion-sec-b",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-fashion-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-13",
+      "name": "Kids Hoodie",
+      "category": "clothing",
+      "keywords": [
+        "kids",
+        "hoodie",
+        "clothing",
+        "fashion"
+      ],
+      "locations": [
+        {
+          "id": "loc-13-1",
+          "floorId": "f1",
+          "storeId": "s-fashion",
+          "sectionId": "s-fashion-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-fashion-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-14",
+      "name": "Organic Apples",
+      "category": "groceries",
+      "keywords": [
+        "organic",
+        "apples",
+        "groceries",
+        "grocery"
+      ],
+      "locations": [
+        {
+          "id": "loc-14-1",
+          "floorId": "f1",
+          "storeId": "s-grocery",
+          "sectionId": "s-grocery-sec-a",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-grocery-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-15",
+      "name": "Whole Grain Bread",
+      "category": "groceries",
+      "keywords": [
+        "whole",
+        "grain",
+        "bread",
+        "groceries",
+        "grocery"
+      ],
+      "locations": [
+        {
+          "id": "loc-15-1",
+          "floorId": "f1",
+          "storeId": "s-grocery",
+          "sectionId": "s-grocery-sec-a",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-grocery-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-16",
+      "name": "Almond Milk",
+      "category": "groceries",
+      "keywords": [
+        "almond",
+        "milk",
+        "groceries",
+        "grocery"
+      ],
+      "locations": [
+        {
+          "id": "loc-16-1",
+          "floorId": "f1",
+          "storeId": "s-grocery",
+          "sectionId": "s-grocery-sec-b",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-grocery-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-17",
+      "name": "Olive Oil",
+      "category": "groceries",
+      "keywords": [
+        "olive",
+        "oil",
+        "groceries",
+        "grocery"
+      ],
+      "locations": [
+        {
+          "id": "loc-17-1",
+          "floorId": "f1",
+          "storeId": "s-grocery",
+          "sectionId": "s-grocery-sec-b",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-grocery-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-18",
+      "name": "Pasta Pack",
+      "category": "groceries",
+      "keywords": [
+        "pasta",
+        "pack",
+        "groceries",
+        "grocery"
+      ],
+      "locations": [
+        {
+          "id": "loc-18-1",
+          "floorId": "f1",
+          "storeId": "s-grocery",
+          "sectionId": "s-grocery-sec-a",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-grocery-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-19",
+      "name": "Frozen Peas",
+      "category": "groceries",
+      "keywords": [
+        "frozen",
+        "peas",
+        "groceries",
+        "grocery"
+      ],
+      "locations": [
+        {
+          "id": "loc-19-1",
+          "floorId": "f1",
+          "storeId": "s-grocery",
+          "sectionId": "s-grocery-sec-b",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-grocery-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-20",
+      "name": "Ground Coffee",
+      "category": "groceries",
+      "keywords": [
+        "ground",
+        "coffee",
+        "groceries",
+        "grocery"
+      ],
+      "locations": [
+        {
+          "id": "loc-20-1",
+          "floorId": "f1",
+          "storeId": "s-grocery",
+          "sectionId": "s-grocery-sec-a",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-grocery-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-21",
+      "name": "Mystery Novel",
+      "category": "books",
+      "keywords": [
+        "mystery",
+        "novel",
+        "books",
+        "books"
+      ],
+      "locations": [
+        {
+          "id": "loc-21-1",
+          "floorId": "f1",
+          "storeId": "s-books",
+          "sectionId": "s-books-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-books-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-22",
+      "name": "Science Textbook",
+      "category": "books",
+      "keywords": [
+        "science",
+        "textbook",
+        "books",
+        "books"
+      ],
+      "locations": [
+        {
+          "id": "loc-22-1",
+          "floorId": "f1",
+          "storeId": "s-books",
+          "sectionId": "s-books-sec-b",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-books-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-23",
+      "name": "Children Story Set",
+      "category": "books",
+      "keywords": [
+        "children",
+        "story",
+        "set",
+        "books",
+        "books"
+      ],
+      "locations": [
+        {
+          "id": "loc-23-1",
+          "floorId": "f1",
+          "storeId": "s-books",
+          "sectionId": "s-books-sec-a",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-books-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-24",
+      "name": "Travel Guide",
+      "category": "books",
+      "keywords": [
+        "travel",
+        "guide",
+        "books",
+        "books"
+      ],
+      "locations": [
+        {
+          "id": "loc-24-1",
+          "floorId": "f1",
+          "storeId": "s-books",
+          "sectionId": "s-books-sec-b",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-books-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-25",
+      "name": "Notebook Bundle",
+      "category": "books",
+      "keywords": [
+        "notebook",
+        "bundle",
+        "books",
+        "books"
+      ],
+      "locations": [
+        {
+          "id": "loc-25-1",
+          "floorId": "f1",
+          "storeId": "s-books",
+          "sectionId": "s-books-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-books-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-26",
+      "name": "Gel Pen Pack",
+      "category": "books",
+      "keywords": [
+        "gel",
+        "pen",
+        "pack",
+        "books",
+        "books"
+      ],
+      "locations": [
+        {
+          "id": "loc-26-1",
+          "floorId": "f1",
+          "storeId": "s-books",
+          "sectionId": "s-books-sec-b",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-books-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-27",
+      "name": "Matte Lipstick",
+      "category": "cosmetics",
+      "keywords": [
+        "matte",
+        "lipstick",
+        "cosmetics",
+        "cosmetics"
+      ],
+      "locations": [
+        {
+          "id": "loc-27-1",
+          "floorId": "f2",
+          "storeId": "s-cosmetics",
+          "sectionId": "s-cosmetics-sec-a",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-cosmetics-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-28",
+      "name": "Vitamin C Serum",
+      "category": "cosmetics",
+      "keywords": [
+        "vitamin",
+        "c",
+        "serum",
+        "cosmetics",
+        "cosmetics"
+      ],
+      "locations": [
+        {
+          "id": "loc-28-1",
+          "floorId": "f2",
+          "storeId": "s-cosmetics",
+          "sectionId": "s-cosmetics-sec-b",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-cosmetics-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-29",
+      "name": "Face Cleanser",
+      "category": "cosmetics",
+      "keywords": [
+        "face",
+        "cleanser",
+        "cosmetics",
+        "cosmetics"
+      ],
+      "locations": [
+        {
+          "id": "loc-29-1",
+          "floorId": "f2",
+          "storeId": "s-cosmetics",
+          "sectionId": "s-cosmetics-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-cosmetics-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-30",
+      "name": "Sunscreen SPF50",
+      "category": "cosmetics",
+      "keywords": [
+        "sunscreen",
+        "spf50",
+        "cosmetics",
+        "cosmetics"
+      ],
+      "locations": [
+        {
+          "id": "loc-30-1",
+          "floorId": "f2",
+          "storeId": "s-cosmetics",
+          "sectionId": "s-cosmetics-sec-b",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-cosmetics-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-31",
+      "name": "Yoga Mat",
+      "category": "sports",
+      "keywords": [
+        "yoga",
+        "mat",
+        "sports",
+        "sports"
+      ],
+      "locations": [
+        {
+          "id": "loc-31-1",
+          "floorId": "f2",
+          "storeId": "s-sports",
+          "sectionId": "s-sports-sec-a",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-sports-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-32",
+      "name": "Dumbbell Set",
+      "category": "sports",
+      "keywords": [
+        "dumbbell",
+        "set",
+        "sports",
+        "sports"
+      ],
+      "locations": [
+        {
+          "id": "loc-32-1",
+          "floorId": "f2",
+          "storeId": "s-sports",
+          "sectionId": "s-sports-sec-b",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-sports-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-33",
+      "name": "Football",
+      "category": "sports",
+      "keywords": [
+        "football",
+        "sports",
+        "sports"
+      ],
+      "locations": [
+        {
+          "id": "loc-33-1",
+          "floorId": "f2",
+          "storeId": "s-sports",
+          "sectionId": "s-sports-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-sports-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-34",
+      "name": "Cycling Helmet",
+      "category": "sports",
+      "keywords": [
+        "cycling",
+        "helmet",
+        "sports",
+        "sports"
+      ],
+      "locations": [
+        {
+          "id": "loc-34-1",
+          "floorId": "f2",
+          "storeId": "s-sports",
+          "sectionId": "s-sports-sec-b",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-sports-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-35",
+      "name": "Ceramic Dinner Set",
+      "category": "home goods",
+      "keywords": [
+        "ceramic",
+        "dinner",
+        "set",
+        "home",
+        "home"
+      ],
+      "locations": [
+        {
+          "id": "loc-35-1",
+          "floorId": "f2",
+          "storeId": "s-home",
+          "sectionId": "s-home-sec-a",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-home-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-36",
+      "name": "LED Desk Lamp",
+      "category": "home goods",
+      "keywords": [
+        "led",
+        "desk",
+        "lamp",
+        "home",
+        "home"
+      ],
+      "locations": [
+        {
+          "id": "loc-36-1",
+          "floorId": "f2",
+          "storeId": "s-home",
+          "sectionId": "s-home-sec-b",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-home-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-37",
+      "name": "Storage Basket",
+      "category": "home goods",
+      "keywords": [
+        "storage",
+        "basket",
+        "home",
+        "home"
+      ],
+      "locations": [
+        {
+          "id": "loc-37-1",
+          "floorId": "f2",
+          "storeId": "s-home",
+          "sectionId": "s-home-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-home-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-38",
+      "name": "Bath Towel Set",
+      "category": "home goods",
+      "keywords": [
+        "bath",
+        "towel",
+        "set",
+        "home",
+        "home"
+      ],
+      "locations": [
+        {
+          "id": "loc-38-1",
+          "floorId": "f2",
+          "storeId": "s-home",
+          "sectionId": "s-home-sec-b",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-home-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-39",
+      "name": "Building Blocks Kit",
+      "category": "toys",
+      "keywords": [
+        "building",
+        "blocks",
+        "kit",
+        "toys",
+        "toys"
+      ],
+      "locations": [
+        {
+          "id": "loc-39-1",
+          "floorId": "f2",
+          "storeId": "s-toys",
+          "sectionId": "s-toys-sec-a",
+          "aisleLabel": "Aisle 4",
+          "navigationNodeId": "n-s-toys-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-40",
+      "name": "Remote Car",
+      "category": "toys",
+      "keywords": [
+        "remote",
+        "car",
+        "toys",
+        "toys"
+      ],
+      "locations": [
+        {
+          "id": "loc-40-1",
+          "floorId": "f2",
+          "storeId": "s-toys",
+          "sectionId": "s-toys-sec-b",
+          "aisleLabel": "Aisle 1",
+          "navigationNodeId": "n-s-toys-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-41",
+      "name": "Puzzle 1000 Pieces",
+      "category": "toys",
+      "keywords": [
+        "puzzle",
+        "1000",
+        "pieces",
+        "toys",
+        "toys"
+      ],
+      "locations": [
+        {
+          "id": "loc-41-1",
+          "floorId": "f2",
+          "storeId": "s-toys",
+          "sectionId": "s-toys-sec-a",
+          "aisleLabel": "Aisle 2",
+          "navigationNodeId": "n-s-toys-sec-a"
+        }
+      ]
+    },
+    {
+      "id": "item-42",
+      "name": "Plush Teddy Bear",
+      "category": "toys",
+      "keywords": [
+        "plush",
+        "teddy",
+        "bear",
+        "toys",
+        "toys"
+      ],
+      "locations": [
+        {
+          "id": "loc-42-1",
+          "floorId": "f2",
+          "storeId": "s-toys",
+          "sectionId": "s-toys-sec-b",
+          "aisleLabel": "Aisle 3",
+          "navigationNodeId": "n-s-toys-sec-b"
+        }
+      ]
+    },
+    {
+      "id": "item-gift-card",
+      "name": "Mall Gift Card",
+      "category": "services",
+      "keywords": [
+        "gift",
+        "card",
+        "voucher",
+        "info"
+      ],
+      "locations": [
+        {
+          "id": "loc-gift-1",
+          "floorId": "f1",
+          "storeId": "s-tech",
+          "sectionId": "s-tech-sec-a",
+          "aisleLabel": "Help Counter",
+          "navigationNodeId": "n-s-tech-sec-a"
+        },
+        {
+          "id": "loc-gift-2",
+          "floorId": "f2",
+          "storeId": "s-home",
+          "sectionId": "s-home-sec-a",
+          "aisleLabel": "Service Desk",
+          "navigationNodeId": "n-s-home-sec-a"
+        }
+      ]
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "n-ent-east",
+        "label": "East Entrance",
+        "type": "entrance",
+        "floorId": "f1",
+        "x": 20,
+        "y": 250
+      },
+      {
+        "id": "n-ent-west",
+        "label": "West Entrance",
+        "type": "entrance",
+        "floorId": "f1",
+        "x": 780,
+        "y": 250
+      },
+      {
+        "id": "n-f1-i1",
+        "label": "F1 Corridor East",
+        "type": "intersection",
+        "floorId": "f1",
+        "x": 120,
+        "y": 250
+      },
+      {
+        "id": "n-f1-i2",
+        "label": "F1 Corridor Center",
+        "type": "intersection",
+        "floorId": "f1",
+        "x": 320,
+        "y": 250
+      },
+      {
+        "id": "n-f1-i3",
+        "label": "F1 Corridor Market",
+        "type": "intersection",
+        "floorId": "f1",
+        "x": 510,
+        "y": 250
+      },
+      {
+        "id": "n-f1-i4",
+        "label": "F1 Corridor West",
+        "type": "intersection",
+        "floorId": "f1",
+        "x": 690,
+        "y": 250
+      },
+      {
+        "id": "n-f1-elevator",
+        "label": "Elevator Floor 1",
+        "type": "elevator",
+        "floorId": "f1",
+        "x": 360,
+        "y": 320
+      },
+      {
+        "id": "n-f1-stairs",
+        "label": "Stairs Floor 1",
+        "type": "stairs",
+        "floorId": "f1",
+        "x": 560,
+        "y": 320
+      },
+      {
+        "id": "n-f1-restroom",
+        "label": "Restroom F1",
+        "type": "facility",
+        "floorId": "f1",
+        "x": 230,
+        "y": 320
+      },
+      {
+        "id": "n-f1-info",
+        "label": "Information Desk F1",
+        "type": "facility",
+        "floorId": "f1",
+        "x": 450,
+        "y": 320
+      },
+      {
+        "id": "n-f2-i1",
+        "label": "F2 Corridor East",
+        "type": "intersection",
+        "floorId": "f2",
+        "x": 120,
+        "y": 250
+      },
+      {
+        "id": "n-f2-i2",
+        "label": "F2 Corridor Center",
+        "type": "intersection",
+        "floorId": "f2",
+        "x": 320,
+        "y": 250
+      },
+      {
+        "id": "n-f2-i3",
+        "label": "F2 Corridor Home",
+        "type": "intersection",
+        "floorId": "f2",
+        "x": 510,
+        "y": 250
+      },
+      {
+        "id": "n-f2-i4",
+        "label": "F2 Corridor West",
+        "type": "intersection",
+        "floorId": "f2",
+        "x": 690,
+        "y": 250
+      },
+      {
+        "id": "n-f2-elevator",
+        "label": "Elevator Floor 2",
+        "type": "elevator",
+        "floorId": "f2",
+        "x": 360,
+        "y": 320
+      },
+      {
+        "id": "n-f2-stairs",
+        "label": "Stairs Floor 2",
+        "type": "stairs",
+        "floorId": "f2",
+        "x": 560,
+        "y": 320
+      },
+      {
+        "id": "n-f2-restroom",
+        "label": "Restroom F2",
+        "type": "facility",
+        "floorId": "f2",
+        "x": 230,
+        "y": 320
+      },
+      {
+        "id": "n-f2-info",
+        "label": "Information Desk F2",
+        "type": "facility",
+        "floorId": "f2",
+        "x": 450,
+        "y": 320
+      },
+      {
+        "id": "n-s-tech-ent",
+        "label": "Tech Haven Entrance",
+        "type": "storeEntrance",
+        "floorId": "f1",
+        "x": 110.0,
+        "y": 190,
+        "storeId": "s-tech"
+      },
+      {
+        "id": "n-s-tech-sec-a",
+        "label": "Tech Haven Front Section",
+        "type": "sectionAccess",
+        "floorId": "f1",
+        "x": 80,
+        "y": 115,
+        "storeId": "s-tech",
+        "sectionId": "s-tech-sec-a"
+      },
+      {
+        "id": "n-s-tech-sec-b",
+        "label": "Tech Haven Back Section",
+        "type": "sectionAccess",
+        "floorId": "f1",
+        "x": 140,
+        "y": 115,
+        "storeId": "s-tech",
+        "sectionId": "s-tech-sec-b"
+      },
+      {
+        "id": "n-s-fashion-ent",
+        "label": "Urban Fashion Entrance",
+        "type": "storeEntrance",
+        "floorId": "f1",
+        "x": 290.0,
+        "y": 190,
+        "storeId": "s-fashion"
+      },
+      {
+        "id": "n-s-fashion-sec-a",
+        "label": "Urban Fashion Front Section",
+        "type": "sectionAccess",
+        "floorId": "f1",
+        "x": 260,
+        "y": 115,
+        "storeId": "s-fashion",
+        "sectionId": "s-fashion-sec-a"
+      },
+      {
+        "id": "n-s-fashion-sec-b",
+        "label": "Urban Fashion Back Section",
+        "type": "sectionAccess",
+        "floorId": "f1",
+        "x": 320,
+        "y": 115,
+        "storeId": "s-fashion",
+        "sectionId": "s-fashion-sec-b"
+      },
+      {
+        "id": "n-s-grocery-ent",
+        "label": "Fresh Basket Entrance",
+        "type": "storeEntrance",
+        "floorId": "f1",
+        "x": 480.0,
+        "y": 190,
+        "storeId": "s-grocery"
+      },
+      {
+        "id": "n-s-grocery-sec-a",
+        "label": "Fresh Basket Front Section",
+        "type": "sectionAccess",
+        "floorId": "f1",
+        "x": 440,
+        "y": 115,
+        "storeId": "s-grocery",
+        "sectionId": "s-grocery-sec-a"
+      },
+      {
+        "id": "n-s-grocery-sec-b",
+        "label": "Fresh Basket Back Section",
+        "type": "sectionAccess",
+        "floorId": "f1",
+        "x": 500,
+        "y": 115,
+        "storeId": "s-grocery",
+        "sectionId": "s-grocery-sec-b"
+      },
+      {
+        "id": "n-s-books-ent",
+        "label": "Page Turners Entrance",
+        "type": "storeEntrance",
+        "floorId": "f1",
+        "x": 670.0,
+        "y": 190,
+        "storeId": "s-books"
+      },
+      {
+        "id": "n-s-books-sec-a",
+        "label": "Page Turners Front Section",
+        "type": "sectionAccess",
+        "floorId": "f1",
+        "x": 640,
+        "y": 115,
+        "storeId": "s-books",
+        "sectionId": "s-books-sec-a"
+      },
+      {
+        "id": "n-s-books-sec-b",
+        "label": "Page Turners Back Section",
+        "type": "sectionAccess",
+        "floorId": "f1",
+        "x": 700,
+        "y": 115,
+        "storeId": "s-books",
+        "sectionId": "s-books-sec-b"
+      },
+      {
+        "id": "n-s-cosmetics-ent",
+        "label": "Glow Studio Entrance",
+        "type": "storeEntrance",
+        "floorId": "f2",
+        "x": 115.0,
+        "y": 190,
+        "storeId": "s-cosmetics"
+      },
+      {
+        "id": "n-s-cosmetics-sec-a",
+        "label": "Glow Studio Front Section",
+        "type": "sectionAccess",
+        "floorId": "f2",
+        "x": 80,
+        "y": 115,
+        "storeId": "s-cosmetics",
+        "sectionId": "s-cosmetics-sec-a"
+      },
+      {
+        "id": "n-s-cosmetics-sec-b",
+        "label": "Glow Studio Back Section",
+        "type": "sectionAccess",
+        "floorId": "f2",
+        "x": 140,
+        "y": 115,
+        "storeId": "s-cosmetics",
+        "sectionId": "s-cosmetics-sec-b"
+      },
+      {
+        "id": "n-s-sports-ent",
+        "label": "Active Arena Entrance",
+        "type": "storeEntrance",
+        "floorId": "f2",
+        "x": 305.0,
+        "y": 190,
+        "storeId": "s-sports"
+      },
+      {
+        "id": "n-s-sports-sec-a",
+        "label": "Active Arena Front Section",
+        "type": "sectionAccess",
+        "floorId": "f2",
+        "x": 270,
+        "y": 115,
+        "storeId": "s-sports",
+        "sectionId": "s-sports-sec-a"
+      },
+      {
+        "id": "n-s-sports-sec-b",
+        "label": "Active Arena Back Section",
+        "type": "sectionAccess",
+        "floorId": "f2",
+        "x": 330,
+        "y": 115,
+        "storeId": "s-sports",
+        "sectionId": "s-sports-sec-b"
+      },
+      {
+        "id": "n-s-home-ent",
+        "label": "Home Nook Entrance",
+        "type": "storeEntrance",
+        "floorId": "f2",
+        "x": 495.0,
+        "y": 190,
+        "storeId": "s-home"
+      },
+      {
+        "id": "n-s-home-sec-a",
+        "label": "Home Nook Front Section",
+        "type": "sectionAccess",
+        "floorId": "f2",
+        "x": 460,
+        "y": 115,
+        "storeId": "s-home",
+        "sectionId": "s-home-sec-a"
+      },
+      {
+        "id": "n-s-home-sec-b",
+        "label": "Home Nook Back Section",
+        "type": "sectionAccess",
+        "floorId": "f2",
+        "x": 520,
+        "y": 115,
+        "storeId": "s-home",
+        "sectionId": "s-home-sec-b"
+      },
+      {
+        "id": "n-s-toys-ent",
+        "label": "Play Planet Entrance",
+        "type": "storeEntrance",
+        "floorId": "f2",
+        "x": 685.0,
+        "y": 190,
+        "storeId": "s-toys"
+      },
+      {
+        "id": "n-s-toys-sec-a",
+        "label": "Play Planet Front Section",
+        "type": "sectionAccess",
+        "floorId": "f2",
+        "x": 650,
+        "y": 115,
+        "storeId": "s-toys",
+        "sectionId": "s-toys-sec-a"
+      },
+      {
+        "id": "n-s-toys-sec-b",
+        "label": "Play Planet Back Section",
+        "type": "sectionAccess",
+        "floorId": "f2",
+        "x": 710,
+        "y": 115,
+        "storeId": "s-toys",
+        "sectionId": "s-toys-sec-b"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "n-ent-east",
+        "to": "n-f1-i1",
+        "weight": 35,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e2",
+        "from": "n-f1-i1",
+        "to": "n-f1-i2",
+        "weight": 40,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e3",
+        "from": "n-f1-i2",
+        "to": "n-f1-i3",
+        "weight": 38,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e4",
+        "from": "n-f1-i3",
+        "to": "n-f1-i4",
+        "weight": 36,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e5",
+        "from": "n-f1-i4",
+        "to": "n-ent-west",
+        "weight": 34,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e6",
+        "from": "n-f1-i2",
+        "to": "n-f1-elevator",
+        "weight": 18,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e7",
+        "from": "n-f1-i3",
+        "to": "n-f1-stairs",
+        "weight": 16,
+        "accessible": false,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e8",
+        "from": "n-f1-i1",
+        "to": "n-f1-restroom",
+        "weight": 20,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e9",
+        "from": "n-f1-i3",
+        "to": "n-f1-info",
+        "weight": 22,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e10",
+        "from": "n-f2-i1",
+        "to": "n-f2-i2",
+        "weight": 40,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e11",
+        "from": "n-f2-i2",
+        "to": "n-f2-i3",
+        "weight": 38,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e12",
+        "from": "n-f2-i3",
+        "to": "n-f2-i4",
+        "weight": 36,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e13",
+        "from": "n-f2-i2",
+        "to": "n-f2-elevator",
+        "weight": 18,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e14",
+        "from": "n-f2-i3",
+        "to": "n-f2-stairs",
+        "weight": 16,
+        "accessible": false,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e15",
+        "from": "n-f2-i1",
+        "to": "n-f2-restroom",
+        "weight": 20,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e16",
+        "from": "n-f2-i3",
+        "to": "n-f2-info",
+        "weight": 22,
+        "accessible": true,
+        "connectionType": "corridor"
+      },
+      {
+        "id": "e17",
+        "from": "n-f1-elevator",
+        "to": "n-f2-elevator",
+        "weight": 24,
+        "accessible": true,
+        "connectionType": "elevator"
+      },
+      {
+        "id": "e18",
+        "from": "n-f1-stairs",
+        "to": "n-f2-stairs",
+        "weight": 14,
+        "accessible": false,
+        "connectionType": "stairs"
+      },
+      {
+        "id": "e19",
+        "from": "n-f1-i1",
+        "to": "n-s-tech-ent",
+        "weight": 12,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e20",
+        "from": "n-s-tech-ent",
+        "to": "n-s-tech-sec-a",
+        "weight": 8,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e21",
+        "from": "n-s-tech-ent",
+        "to": "n-s-tech-sec-b",
+        "weight": 9,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e22",
+        "from": "n-f1-i2",
+        "to": "n-s-fashion-ent",
+        "weight": 12,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e23",
+        "from": "n-s-fashion-ent",
+        "to": "n-s-fashion-sec-a",
+        "weight": 8,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e24",
+        "from": "n-s-fashion-ent",
+        "to": "n-s-fashion-sec-b",
+        "weight": 9,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e25",
+        "from": "n-f1-i3",
+        "to": "n-s-grocery-ent",
+        "weight": 12,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e26",
+        "from": "n-s-grocery-ent",
+        "to": "n-s-grocery-sec-a",
+        "weight": 8,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e27",
+        "from": "n-s-grocery-ent",
+        "to": "n-s-grocery-sec-b",
+        "weight": 9,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e28",
+        "from": "n-f1-i4",
+        "to": "n-s-books-ent",
+        "weight": 12,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e29",
+        "from": "n-s-books-ent",
+        "to": "n-s-books-sec-a",
+        "weight": 8,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e30",
+        "from": "n-s-books-ent",
+        "to": "n-s-books-sec-b",
+        "weight": 9,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e31",
+        "from": "n-f2-i1",
+        "to": "n-s-cosmetics-ent",
+        "weight": 12,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e32",
+        "from": "n-s-cosmetics-ent",
+        "to": "n-s-cosmetics-sec-a",
+        "weight": 8,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e33",
+        "from": "n-s-cosmetics-ent",
+        "to": "n-s-cosmetics-sec-b",
+        "weight": 9,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e34",
+        "from": "n-f2-i2",
+        "to": "n-s-sports-ent",
+        "weight": 12,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e35",
+        "from": "n-s-sports-ent",
+        "to": "n-s-sports-sec-a",
+        "weight": 8,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e36",
+        "from": "n-s-sports-ent",
+        "to": "n-s-sports-sec-b",
+        "weight": 9,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e37",
+        "from": "n-f2-i3",
+        "to": "n-s-home-ent",
+        "weight": 12,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e38",
+        "from": "n-s-home-ent",
+        "to": "n-s-home-sec-a",
+        "weight": 8,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e39",
+        "from": "n-s-home-ent",
+        "to": "n-s-home-sec-b",
+        "weight": 9,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e40",
+        "from": "n-f2-i4",
+        "to": "n-s-toys-ent",
+        "weight": 12,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e41",
+        "from": "n-s-toys-ent",
+        "to": "n-s-toys-sec-a",
+        "weight": 8,
+        "accessible": true,
+        "connectionType": "doorway"
+      },
+      {
+        "id": "e42",
+        "from": "n-s-toys-ent",
+        "to": "n-s-toys-sec-b",
+        "weight": 9,
+        "accessible": true,
+        "connectionType": "doorway"
+      }
+    ]
+  }
+}
