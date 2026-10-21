@@ -23,6 +23,9 @@ interface UseGuidanceArgs {
   nodes: NavigationNode[];
   speech: SpeechController;
   destinationName?: string;
+  /** Move a "you are here" marker along the route automatically. */
+  simulateWalk: boolean;
+  speedMultiplier: number;
 }
 
 /**
@@ -32,12 +35,10 @@ interface UseGuidanceArgs {
  * - Simulated walk: a "you are here" marker walks the route at a realistic pace,
  *   announcing each maneuver as it is reached plus an advance warning before it.
  */
-export const useGuidance = ({ route, nodes, speech, destinationName }: UseGuidanceArgs) => {
+export const useGuidance = ({ route, nodes, speech, destinationName, simulateWalk, speedMultiplier }: UseGuidanceArgs) => {
   const [status, setStatus] = useState<GuidanceStatus>('idle');
   const [stepIndex, setStepIndex] = useState(0);
   const [traveled, setTraveled] = useState(0);
-  const [simulateWalk, setSimulateWalk] = useState(true);
-  const [speedMultiplier, setSpeedMultiplier] = useState(3);
 
   const nodeMap = useMemo(() => new Map(nodes.map((node) => [node.id, node])), [nodes]);
   const steps = useMemo(() => route?.steps ?? [], [route]);
@@ -198,9 +199,6 @@ export const useGuidance = ({ route, nodes, speech, destinationName }: UseGuidan
     remainingDistance,
     distanceToNextManeuver,
     simulateWalk,
-    setSimulateWalk,
-    speedMultiplier,
-    setSpeedMultiplier,
     start,
     pause,
     stop,

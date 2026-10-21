@@ -117,6 +117,7 @@ export type Maneuver =
   | 'stairs-down'
   | 'exit-elevator'
   | 'exit-stairs'
+  | 'waypoint'
   | 'arrive';
 
 /** One turn-by-turn instruction, similar to a single step in a GPS navigation app. */
@@ -155,6 +156,8 @@ export interface RouteDestination {
   storeName?: string;
   sectionName?: string;
   aisleLabel?: string;
+  /** Overrides the item sentence on arrival, e.g. "Pick up Laptop (Aisle 2) and Mouse (Aisle 3)." */
+  arrivalNote?: string;
 }
 
 export interface RouteResult {

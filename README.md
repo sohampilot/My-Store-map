@@ -19,7 +19,7 @@ Open the URL printed by Vite (usually http://localhost:5173).
 # 1. Tools: Node.js + npm + git
 sudo pacman -Syu --needed nodejs npm git
 
-# 2. Voices for text-to-speech (Firefox and Chromium on Linux use speech-dispatcher)
+# 2. Voices for text-to-speech (browsers on Linux talk through speech-dispatcher)
 sudo pacman -S --needed speech-dispatcher espeak-ng
 
 # 3. Get the code and run it
@@ -34,8 +34,24 @@ and open the "Network" URL Vite prints (allow port 5173 in your firewall if you 
 
 For a production build: `npm run build && npm run preview` (serves `dist/` on http://localhost:4173).
 
-If the voice guide says "No speech voices were found", check `spd-say "hello"` works in a terminal,
-then fully restart the browser. Google Chrome also ships its own online voices.
+### No sound from the voice guide (Linux)
+
+Browsers on Linux have no built-in voices; they talk through **speech-dispatcher**. The app shows a
+"Sound check" in **Settings → Voice guidance** with the number of voices it found and what went wrong.
+
+1. Check system volume / output device (`pavucontrol`).
+2. Install the engine: `sudo pacman -S --needed speech-dispatcher espeak-ng`
+3. Test outside the browser: `spd-say "hello"`. If silent, run `spd-conf` and pick `espeak-ng` as
+   the default module (or set `DefaultModule espeak-ng` in `~/.config/speech-dispatcher/speechd.conf`).
+4. **Firefox** works out of the box (`media.webspeech.synth.enabled` must be `true` in `about:config`).
+   **Chromium / Chrome / Brave** need a flag on Linux. Fully quit the browser and start it with
+   `--enable-speech-dispatcher`, or make it permanent:
+   ```bash
+   echo "--enable-speech-dispatcher" >> ~/.config/chromium-flags.conf   # Chromium
+   echo "--enable-speech-dispatcher" >> ~/.config/brave-flags.conf      # Brave
+   echo "--enable-speech-dispatcher" >> ~/.config/chrome-flags.conf     # google-chrome (AUR)
+   ```
+5. Fully restart the browser and press **Settings → Test voice**.
 
 ## Scripts
 
@@ -60,6 +76,14 @@ then fully restart the browser. Google Chrome also ships its own online voices.
   - "Simulate walk" moves a "you are here" marker along the route, speaks each turn as it is reached
     and gives "In 10 meters, turn left…" warnings; the map follows you between floors
   - Voice, speaking rate and volume settings (saved in the browser), optional auto-announce
+- Multi-stop trips (Trip tab): add up to 12 items, pick a start, and watch a minimum spanning tree being
+  built step by step over the real walking distances between the start and every stop (Kruskal on the
+  all-pairs shortest-path distances). The tree is walked from the start (nearest branch first) to get a
+  visiting order, optionally shortened with 2-opt, then turned into one continuous voice-guided route
+  ("Stop 2 of 4 … Pick up Laptop (Aisle 2) and Mouse (Aisle 3). Next, …"). Items in the same section are
+  grouped into one stop; unreachable stops are reported; optional return to the start.
+- Compact single-screen layout: tabs (Find · Trip · Directions · Explore), full-height map, and a
+  Settings drawer for route options, voice, simulated walk, map, theme and the demo data editor
 - Map: drag to pan, scroll to zoom, walkway graph, start/destination pins, route arrows,
   "route continues on Floor N" shortcut, live MST step playback on the map
 - MST mode with Kruskal + union-find, deterministic tie-breaking, and step playback
@@ -70,7 +94,8 @@ then fully restart the browser. Google Chrome also ships its own online voices.
 
 ## Architecture overview
 
-- `src/algorithms/`: pure graph algorithms (`kruskal`, `dijkstra`, `unionFind`) and `directions` (turn-by-turn text)
+- `src/algorithms/`: pure graph algorithms (`kruskal`, `dijkstra`, `unionFind`), `directions` (turn-by-turn text)
+  and `multiStop` (trip planner: all-pairs distances, stop MST, tree order, 2-opt, stitched route)
 - `src/models/`: typed data model
 - `src/data/`: fictional sample dataset JSON
 - `src/services/`: replaceable `DataService` + `LocalDataService`
@@ -82,6 +107,9 @@ then fully restart the browser. Google Chrome also ships its own online voices.
 ## MST vs shortest-path mode
 
 - **MST mode**: graph-structure visualization connecting all navigation nodes using minimum total edge weight. It does **not** represent user route guidance.
+- **Trip MST** (Trip tab): an MST over the start and your chosen stops, where each link's weight is the
+  shortest walking distance between them. It is used to pick a visiting order; the walking route itself
+  always follows real corridors.
 - **Route mode**: shortest walkable path from a selected start node to an item location using Dijkstra, optionally accessibility-filtered.
 
 ## Demo limitations
